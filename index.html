@@ -96,7 +96,7 @@
 
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -111,6 +111,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .stat-card::before {
@@ -145,11 +146,21 @@
             text-shadow: var(--neon-shadow);
         }
 
+        .followers-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .stat-number img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin: 10px 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .stat-label {
@@ -159,24 +170,74 @@
             letter-spacing: 2px;
         }
 
+        .social-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
         .social-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 15px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            animation: fadeIn 1s ease;
         }
 
         .social-link {
+            position: relative;
             color: var(--text-color);
             font-size: 1.8rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .social-link i {
             position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
         }
 
         .social-link:hover {
-            color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+
+        .social-link:hover::before {
+            opacity: 0.2;
+        }
+
+        .social-link:hover i {
             transform: scale(1.2);
-            text-shadow: var(--neon-shadow);
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
         }
 
         @keyframes pulse {
@@ -255,32 +316,51 @@
             <h1 class="profile-name">Nopparat</h1>
             <p class="profile-bio">{ FULL STACK DEVELOPER | OPEN SOURCE ENTHUSIAST }</p>
             
-            <div class="social-links">
-                <a href="https://github.com/nopparat231" class="social-link" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="#" class="social-link" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="#" class="social-link" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
+            <div class="social-section">
+                <div class="social-links">
+                    <a href="https://github.com/nopparat231" class="social-link" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="social-link" target="_blank" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank" title="Portfolio">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
             </div>
         </header>
 
         <div class="stats-container">
             <div class="stat-card">
-                <i class="fas fa-code-branch stat-icon"></i>
-                <div class="stat-number">
-                    <img src="https://img.shields.io/github/followers/nopparat231?style=for-the-badge&color=00ffff&labelColor=000000" alt="GitHub Followers">
+                <i class="fas fa-history stat-icon"></i>
+                <div class="stat-label">Recent Activities</div>
+                <div class="recent-activity">
+                    <div class="activity-item">
+                        <i class="fas fa-code-branch activity-icon"></i>
+                        <div class="activity-content">
+                            <img src="https://github-readme-activity-graph.vercel.app/graph?username=nopparat231&theme=react-dark&hide_border=true&area=true&custom_title=Contribution%20Graph" alt="Contribution Graph" style="width: 100%; border-radius: 8px;">
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <i class="fas fa-star activity-icon"></i>
+                        <div class="activity-content">
+                            <img src="https://github-profile-trophy.vercel.app/?username=nopparat231&theme=darkhub&no-frame=true&row=1&column=6" alt="GitHub Trophies" style="width: 100%; border-radius: 8px;">
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-label">GitHub Followers</div>
             </div>
 
             <div class="stat-card">
                 <i class="fas fa-star stat-icon"></i>
                 <div class="stat-number">
-                    <img src="https://github-readme-stats.vercel.app/api?username=nopparat231&show_icons=true&theme=radical&title_color=00ffff&text_color=ffffff&icon_color=00ffff&bg_color=0a0a0a&border_color=00ffff" alt="GitHub Stats" style="max-width: 100%;">
+                    <img src="https://github-readme-stats.vercel.app/api?username=nopparat231&show_icons=true&theme=radical&title_color=00ffff&text_color=ffffff&icon_color=00ffff&bg_color=0a0a0a&border_color=00ffff&hide_border=true&card_width=100" alt="GitHub Stats" style="width: 100%;">
                 </div>
                 <div class="stat-label">GitHub Stats</div>
             </div>
@@ -288,17 +368,15 @@
             <div class="stat-card">
                 <i class="fas fa-laptop-code stat-icon"></i>
                 <div class="stat-number">
-                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=nopparat231&theme=dark&background=0a0a0a&border=00ffff&stroke=00ffff&ring=00ffff&fire=ff00ff&currStreakLabel=00ffff" alt="GitHub Streak" style="max-width: 100%;">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=nopparat231&theme=dark&background=0a0a0a&border=00ffff&stroke=00ffff&ring=00ffff&fire=ff00ff&currStreakLabel=00ffff&hide_border=true&card_width=100" alt="GitHub Streak" style="width: 100%;">
                 </div>
                 <div class="stat-label">Contribution Streak</div>
             </div>
-        </div>
 
-        <div class="stats-container">
             <div class="stat-card">
                 <i class="fas fa-code stat-icon"></i>
                 <div class="stat-number">
-                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nopparat231&layout=compact&theme=radical&title_color=00ffff&text_color=ffffff&bg_color=0a0a0a&border_color=00ffff" alt="Top Languages" style="max-width: 100%;">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nopparat231&layout=compact&theme=radical&title_color=00ffff&text_color=ffffff&bg_color=0a0a0a&border_color=00ffff&hide_border=true&card_width=100" alt="Top Languages" style="width: 100%;">
                 </div>
                 <div class="stat-label">Most Used Languages</div>
             </div>
